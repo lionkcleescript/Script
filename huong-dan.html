@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Hướng Dẫn - Lion Kc Lee</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        body { 
+            background-color: #0b0c10; 
+            color: #ffffff; 
+            font-family: sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container { 
+            width: 100%;
+            max-width: 800px; 
+            background: #151c24; 
+            padding: 20px; 
+            border-radius: 12px; 
+            border: 1px solid #2a3543; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        /* Khung chứa video chuẩn tỉ lệ 16:9 */
+        .video-container { 
+            position: relative; 
+            width: 100%; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            border: 1px solid #2a3543; 
+        }
+        .video-container iframe { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+        }
+        .back-link { 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            color: #45f3ff; 
+            text-decoration: none; 
+            font-weight: 500; 
+        }
+        .back-link:hover { 
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Nút quay lại trang chủ -->
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Quay lại Trang Chủ</a>
+    
+    <!-- KHUNG PHÁT VIDEO CHÍNH -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/G0H4t-MY9Tw" allowfullscreen></iframe>
+    </div>
+</div>
+
+</body>
+  </html>
+  
