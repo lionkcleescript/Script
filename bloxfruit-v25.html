@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blox Fruits Script - Lion Kc Lee</title>
+    <title>Envomon Script - Lion Kc Lee</title>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
@@ -16,8 +16,9 @@
         body { background-color: var(--bg-main); color: var(--text-light); font-family: sans-serif; margin: 0; padding: 20px; }
         .container { max-width: 700px; margin: 20px auto; background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid #2a3543; }
         
-        /* Ảnh banner lớn của trang con */
-        .page-banner { width: 100%; height: 250px; border-radius: 8px; object-fit: cover; margin-bottom: 20px; border: 1px solid #2a3543; }
+        /* Khung chứa video lớn ở trang con */
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; margin-bottom: 20px; border-radius: 8px; overflow: hidden; border: 1px solid #2a3543; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         
         h1 { color: var(--accent); font-size: 1.8rem; margin-top: 0; }
         .meta-info { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; border-bottom: 1px solid #2a3543; padding-bottom: 10px; }
@@ -34,10 +35,13 @@
 <div class="container">
     <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Quay lại Trang Chủ</a>
     
-    <!-- ẢNH MINH HỌA LỚN TRONG BÀI VIẾT -->
-    <img src="https://unsplash.com" alt="Blox Fruits Banner" class="page-banner">
+    <!-- KHUNG PHÁT VIDEO CHÍNH CỦA BÀI VIẾT -->
+    <div class="video-container">
+        <!-- THAY MÃ VIDEO YOUTUBE CỦA BẠN VÀO SAU CHỮ embed/ -->
+        <iframe src="https://www.youtube.com/embed/80KzF8c9dHQ" allowfullscreen></iframe>
+    </div>
     
-    <h1>[Blox Fruits] Fiend Hub Mới Nhất Update 25 - Auto Farm Siêu Mượt</h1>
+    <h1>[Keyless]Roblox Envomon|Top 2 best script auto farm level|Auto cath,auto skill,shiny finder|Lion Kc</h1>
     <div class="meta-info"><i class="fa-solid fa-user"></i> Đăng bởi Lion Kc Lee • <i class="fa-solid fa-clock"></i> Cập nhật liên tục</div>
 
     <div class="ads-box">
@@ -47,7 +51,7 @@
     <h3><i class="fa-solid fa-star"></i> Các tính năng chính:</h3>
     <ul style="line-height: 1.8; color: var(--text-muted);">
         <li>Auto Farm Level siêu nhanh không bị reset</li>
-        <li>Tự động đi Raid, Auto Mua Chip, Mirage Island</li>
+        <li>Auto skill, và 1 số tính năng khác</li>
         <li>Teleport mượt mà không lỗi game</li>
     </ul>
 
@@ -56,18 +60,7 @@
     </div>
 
     <div style="text-align: center; margin-top: 30px;">
-        <a href="CHÈN_LINK_RÚT_GỌN_TẠI_ĐÂY" target="_blank" class="btn"><i class="fa-solid fa-key"></i> BẤM VÀO ĐÂY ĐỂ LẤY KEY SCRIPT</a>
+        <a href="https://direct-link.net/1340562/1dsPzkEQsexf" target="_blank" class="btn"><i class="fa-solid fa-key"></i> BẤM VÀO ĐÂY ĐỂ LẤY KEY SCRIPT</a>
         <button class="btn btn-copy" onclick="copyScript()"><i class="fa-solid fa-copy"></i> Copy Lệnh Loadstring Nhanh</button>
     </div>
 </div>
-
-<script>
-    function copyScript() {
-        var scriptText = "loadstring(game:HttpGet('https://githubusercontent.com'))()";
-        navigator.clipboard.writeText(scriptText);
-        alert("Đã copy lệnh script thành công vào bộ nhớ tạm!");
-    }
-</script>
-
-</body>
-</html>
