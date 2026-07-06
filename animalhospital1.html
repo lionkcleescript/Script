@@ -77,16 +77,14 @@
         .features-box h3 { margin-top: 0; color: var(--accent); font-size: 1.1rem; }
         .features-box ul { margin: 0; padding-left: 20px; color: var(--text-muted); line-height: 1.6; }
         
-        /* Khu vực quảng cáo */
-        .ads-placeholder { 
-            background: #1f2833; 
-            border: 1px dashed var(--accent); 
-            padding: 15px; 
+        /* Khu vực hiển thị quảng cáo Banner thực tế */
+        .ads-container { 
             text-align: center; 
             margin: 20px 0; 
-            color: var(--text-muted); 
-            border-radius: 8px; 
-            font-size: 0.9rem;
+            min-height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         /* Hệ thống nút bấm */
@@ -127,10 +125,8 @@
         }
     </style>
 
-    <!-- KHU VỰC QUẢNG CÁO NHẢY TAB (POP-UNDER) -->
-    <script type="text/javascript">
-        // Sau khi đăng ký Adsterra, bạn copy đoạn mã nhảy tab họ cấp dán đè vào đây.
-    </script>
+    <!-- VỊ TRÍ 1: MÃ QUẢNG CÁO NHẢY TAB (POP-UNDER) HOẶC ANTI-ADBLOCK -->
+    <!-- Khi lấy được mã Popunder từ Monetag/Adsterra, bạn copy toàn bộ dán ngay phía dưới dòng này -->
 
 </head>
 <body>
@@ -141,18 +137,19 @@
     
     <!-- VIDEO YOUTUBE CỦA SCRIPT -->
     <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/SBInIQ_2OXQ" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/80KzF8c9dHQ" allowfullscreen></iframe>
     </div>
     
-    <!-- TIÊU ĐỀ (Sửa chữ ở đây) -->
+    <!-- TIÊU ĐỀ -->
     <h1>[OP] <span>Best script Animal hospital</span> - top 3 best script Auto Visitor, Auto treatment, No key</h1>
     <div class="meta-info">
         <i class="fa-solid fa-user"></i> By Lion Kc Lee • <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Safe
     </div>
 
-    <!-- QUẢNG CÁO BANNER -->
-    <div class="ads-placeholder">
-        <i class="fa-solid fa-rectangle-ad"></i> [Quảng cáo Banner Đầu Trang]
+    <!-- VỊ TRÍ 2: QUẢNG CÁO BANNER ĐẦU TRANG -->
+    <div class="ads-container">
+        <!-- Xóa dòng chữ dưới và dán đoạn mã Banner (Native Banner/728x90) của bạn vào đây -->
+        <span style="color:var(--text-muted); border: 1px dashed var(--accent); padding: 15px; border-radius: 8px;">[Quảng cáo Banner Đầu Trang]</span>
     </div>
 
     <!-- CHỨC NĂNG SCRIPT -->
@@ -166,18 +163,17 @@
         </ul>
     </div>
 
-    <div class="ads-placeholder">
-        <i class="fa-solid fa-rectangle-ad"></i> [Quảng cáo Banner Giữa Trang]
+    <!-- VỊ TRÍ 3: QUẢNG CÁO BANNER GIỮA TRANG -->
+    <div class="ads-container">
+        <!-- Xóa dòng chữ dưới và dán đoạn mã Banner (Native Banner/300x250) của bạn vào đây -->
+        <span style="color:var(--text-muted); border: 1px dashed var(--accent); padding: 15px; border-radius: 8px;">[Quảng cáo Banner Giữa Trang]</span>
     </div>
 
     <!-- HỆ THỐNG NÚT BẤM VƯỢT LINK -->
     <div class="btn-group">
-        
-        <!-- Thay chữ ĐIỀN_LINK_RÚT_GỌN_CỦA_BẠN bằng link Linkvertise kiếm tiền thực tế của bạn -->
         <button class="btn btn-linkvertise" id="redirectBtn" onclick="goToLink('https://direct-link.net/1340562/u0MvnypcWBm5')" disabled>
             <i class="fa-solid fa-hourglass-half"></i> Vui lòng chờ <span id="countdown">10</span> giây...
         </button>
-        
     </div>
 </div>
 
@@ -192,7 +188,6 @@
         if (seconds <= 0) {
             clearInterval(timer);
             redirectBtn.disabled = false;
-            // Đã đổi tên nút bấm thành Link Script theo đúng yêu cầu của bạn
             redirectBtn.innerHTML = '<i class="fa-solid fa-link"></i> LINK SCRIPT';
         } else {
             countdownEl.innerText = seconds;
@@ -203,11 +198,13 @@
         if(url === 'ĐIỀN_LINK_RÚT_GỌN_CỦA_BẠN') {
             alert('Bạn chưa cài đặt link rút gọn trong mã nguồn GitHub!');
         } else {
+            // VỊ TRÍ 4: KIẾM TIỀN MẸO (SMARTLINK)
+            // Bạn có thể chèn mã Smartlink mở kèm tại đây để tăng tối đa doanh thu khi họ bấm nút
             window.open(url, '_blank');
         }
     }
 </script>
 
 </body>
-    </html>
-    
+                                                                                                        </html>
+        
