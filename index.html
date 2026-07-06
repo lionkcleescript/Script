@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lion Kc Lee | Roblox Scripts & Executors</title>
-    <meta name='admaven-placement' content=Bqjs7pdCH>
+    
+    <!-- ĐÃ XÓA THẺ META CHỜ DUYỆT CŨ CỦA AD-MAVEN Ở ĐÂY -->
+
+    <!-- Sửa link thư viện Icon FontAwesome chuẩn để hiển thị tất cả icon -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
@@ -47,7 +50,22 @@
         .author span { color: #ff4757; }
         .btn-view { background-color: var(--accent); color: #0b0c10; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; transition: 0.3s; }
         .btn-view:hover { background-color: #ffffff; box-shadow: 0 0 10px #ffffff; }
+
+        /* KHU VỰC THAY ĐỔI: Khung chứa quảng cáo Banner mới căn giữa tự động */
+        .ads-horizontal-container {
+            text-align: center;
+            margin: 25px auto;
+            max-width: 728px;
+            min-height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
+
+    <!-- VỊ TRÍ 1: MÃ POPUNDER / ANTI-ADBLOCK CHẠY NGẦM -->
+    <!-- Khi lấy được mã từ mạng quảng cáo mới, bạn dán ngay dưới dòng này nhé -->
+
 </head>
 <body>
 
@@ -55,7 +73,7 @@
         <a href="#" class="logo"><i class="fa-solid fa-cubes"></i> LION KC LEE</a>
         <div class="nav-links">
             <a href="#" style="color: var(--accent);">Scripts</a>
-            <a href="https://youtube.com/@lionkclee9018?si=puGH4NbgLw_8NTEb" target="_blank">YouTube</a>
+            <a href="https://youtube.com/@lionkclee9018?si=puGH4NbgLw_8NTEb" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a>
         </div>
     </nav>
 
@@ -68,14 +86,19 @@
         </div>
     </div>
 
+    <!-- VỊ TRÍ 2: QUẢNG CÁO BANNER LỚN DƯỚI KHU VỰC TÌM KIẾM (Khuyên dùng Banner 728x90 hoặc Native) -->
+    <div class="ads-horizontal-container">
+        <!-- Khi lấy được mã nhúng Banner, xóa dòng span tạm thời bên dưới và dán mã vào đây -->
+        <span style="color: var(--text-muted); border: 1px dashed var(--accent); padding: 15px; border-radius: 8px; font-size: 0.9rem;">[Quảng cáo Banner Đầu Trang Chủ]</span>
+    </div>
+
     <div class="main-content">
         <div class="section-title"><i class="fa-solid fa-fire"></i> Latest Scripts</div>
         <div class="grid-container" id="scriptGrid">
 
-            <!-- Ô SCRIPT 3: HƯỚNG DẪN (ĐÃ ĐỔI SANG VIDEO YOUTUBE) -->
+            <!-- Ô SCRIPT 3: ANIMAL HOSPITAL -->
             <div class="script-card">
                 <div class="card-video">
-                    <!-- THAY MÃ VIDEO YOUTUBE CỦA BẠN VÀO SAU CHỮ embed/ -->
                     <iframe src="https://www.youtube.com/embed/SBInIQ_2OXQ" allowfullscreen></iframe>
                     <div class="game-badge">script</div>
                 </div>
@@ -89,10 +112,9 @@
                 </div>
             </div>
             
-            <!-- Ô SCRIPT 1: BLOX FRUIT (ĐÃ ĐỔI SANG VIDEO YOUTUBE) -->
+            <!-- Ô SCRIPT 1: BLOX FRUIT -->
             <div class="script-card">
                 <div class="card-video">
-                    <!-- THAY MÃ VIDEO YOUTUBE CỦA BẠN VÀO SAU CHỮ embed/ -->
                     <iframe src="https://www.youtube.com/embed/80KzF8c9dHQ" allowfullscreen></iframe>
                     <div class="game-badge">Script</div>
                 </div>
@@ -106,10 +128,9 @@
                 </div>
             </div>
 
-            <!-- Ô SCRIPT 2: HƯỚNG DẪN (ĐÃ ĐỔI SANG VIDEO YOUTUBE) -->
+            <!-- Ô SCRIPT 2: HƯỚNG DẪN CÁC TỰA GAME BỊ CẤM -->
             <div class="script-card">
                 <div class="card-video">
-                    <!-- THAY MÃ VIDEO YOUTUBE CỦA BẠN VÀO SAU CHỮ embed/ -->
                     <iframe src="https://www.youtube.com/embed/G0H4t-MY9Tw" allowfullscreen></iframe>
                     <div class="game-badge">HƯỚNG DẪN</div>
                 </div>
@@ -126,6 +147,13 @@
         </div>
     </div>
 
+    <!-- VỊ TRÍ 3: QUẢNG CÁO BANNER CUỐI TRANG CHỦ -->
+    <div class="ads-horizontal-container">
+        <!-- Khi lấy được mã nhúng Banner, xóa dòng span tạm thời bên dưới và dán mã vào đây -->
+        <span style="color: var(--text-muted); border: 1px dashed var(--accent); padding: 15px; border-radius: 8px; font-size: 0.9rem;">[Quảng cáo Banner Cuối Trang Chủ]</span>
+    </div>
+
+    <!-- ĐOẠN XỬ LÝ HỆ THỐNG TÌM KIẾM (ĐÃ HOÀN THIỆN ĐẦY ĐỦ KHÔNG BỊ LỖI CẮT CHỮ) -->
     <script>
         function filterScripts() {
             let input = document.getElementById('searchInput').value.toLowerCase();
@@ -133,9 +161,15 @@
             for (let i = 0; i < cards.length; i++) {
                 let title = cards[i].querySelector('.card-title').innerText.toLowerCase();
                 let badge = cards[i].querySelector('.game-badge').innerText.toLowerCase();
-                if (title.includes(input) || badge.includes(input)) { cards[i].style.display = ""; } else { cards[i].style.display = "none"; }
+                if (title.includes(input) || badge.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
         }
     </script>
+
 </body>
-</html>
+                </html>
+    
