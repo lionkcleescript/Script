@@ -317,18 +317,155 @@
         </div>
     </div>
 
-    Chào mừng bạn đến với lionkclee.site👋 
+    <!-- Bắt đầu phần bảng chào mừng ngầu hơn -->
+<div class="welcome-container">
+    <div class="welcome-header">
+        <span class="welcome-icon">⚡</span>
+        <h3>CHÀO MỪNG BẠN ĐẾN VỚI LIONKCLEE.SITE</h3>
+        <span class="welcome-icon">⚡</span>
+    </div>
     
-    <li>điểm đến hàng đầu dành cho cộng đồng scripter Roblox🔥</li>
-    <li>Chúng tôi chuyên cung cấp,đánh giá và chia sẻ các phiên bản client/script mới nhất,</li>
-        <li>an toàn nhất cho cả Roblox Quốc tế (Global) và Roblox VNG.</li>
-   
-    📌Tại đây,bạn sẽ tìm thấy📌:
+    <p class="welcome-subtitle">Điểm đến hàng đầu dành cho cộng đồng scripter Roblox 🔥</p>
+    
+    <div class="welcome-grid">
+        <div class="welcome-card">
+            <span class="card-icon">🚀</span>
+            <p>Chúng tôi chuyên cung cấp, đánh giá và chia sẻ các phiên bản client/script mới nhất, an toàn nhất cho cả Roblox Quốc tế (Global) và Roblox VNG.</p>
+        </div>
+        
+        <div class="welcome-card">
+            <span class="card-icon">🎯</span>
+            <p>Tại đây, bạn sẽ tìm thấy các đánh giá khách quan. Tìm hiểu chi tiết các tính năng, độ ổn định và cách tối ưu hóa hiệu suất của từng client.</p>
+        </div>
+        
+        <div class="welcome-card">
+            <span class="card-icon">🔄</span>
+            <p>Cập nhật liên tục các bản bypass anti-cheat mới nhất, hỗ trợ tối đa cho trải nghiệm của bạn.</p>
+        </div>
+        
+        <div class="welcome-card text-highlight">
+            <span class="card-icon">🛡️</span>
+            <p><strong>An toàn & Tối ưu:</strong> Cung cấp link đã được kiểm duyệt, giúp bạn tránh các rủi ro về mã độc hay bị khóa tài khoản (ban wave).</p>
+        </div>
+    </div>
+</div>
 
-   <li>🔎Đánh giá khách quan:Tìm hiểu chi tiết các tính năng,độ ổn định và cách tối ưu hóa hiệu suất của từng client.</li>
-<li> 🧪Cập nhật liên tục: Các bản bypass anti-cheat mới nhất, hỗ trợ tối đa cho trải nghiệm của bạn.</li>
-  <li>✅An toàn & Tối ưu: Cung cấp link đã được kiểm duyệt,giúp bạn tránh các rủi ro về mã độc hay bị khóa tài khoản (ban wave)</li>
+<!-- Thêm đoạn CSS này vào trong thẻ <style> hoặc file .css của bạn -->
+<style>
+.welcome-container {
+    background: rgba(15, 15, 25, 0.75);
+    border: 1px solid #00e6ff;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 95%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 230, 255, 0.15);
+    backdrop-filter: blur(10px);
+}
 
+.welcome-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.welcome-header h3 {
+    color: #00e6ff;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+    font-size: 1.3rem;
+}
+
+.welcome-icon {
+    font-size: 1.3rem;
+    animation: pulse 1.5s infinite alternate;
+}
+
+.welcome-subtitle {
+    text-align: center;
+    color: #ffaa00;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+
+.welcome-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    text-align: left;
+}
+
+.welcome-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.welcome-card:hover {
+    background: rgba(0, 230, 255, 0.05);
+    border-color: #00e6ff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 230, 255, 0.1);
+}
+
+.card-icon {
+    font-size: 1.4rem;
+}
+
+.welcome-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #cccccc;
+}
+
+.welcome-card:hover p {
+    color: #ffffff;
+}
+
+.text-highlight {
+    border-color: #00ff66;
+}
+.text-highlight:hover {
+    background: rgba(0, 255, 102, 0.05);
+    border-color: #00ff66;
+    box-shadow: 0 5px 15px rgba(0, 255, 102, 0.1);
+}
+.text-highlight strong {
+    color: #00ff66;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.2); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .welcome-grid {
+        grid-template-columns: 1fr;
+    }
+    .welcome-header h3 {
+        font-size: 1.1rem;
+    }
+}
+</style>
+<!-- Kết thúc phần bảng chào mừng -->
+    
+    
     <!-- VỊ TRÍ BANNER CUỐI TRANG CHỦ: Đã lồng mã Direct Link của bạn thành nút bấm -->
     <div class="ads-horizontal-container">
         <a href="https://omg10.com/4/11248144" target="_blank" style="background: linear-gradient(45deg, #2ed573, #7bed9f); color: #0b0c10; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 0 0 15px #2ed573; display: inline-flex; align-items: center; gap: 8px;"><i class="fa-solid fa-circle-down"></i> download script & Client Executor (ADS) </a>
