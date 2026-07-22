@@ -363,10 +363,30 @@
         </div>
     </div>
 </div>
+<!-- CỤM Ô THÔNG BÁO CÓ NÚT TẮT X HOÀN CHỈNH -->
+<div class="floating-client-widget" id="clientUpdateWidget">
+    <div class="widget-glow-border"></div>
+    <div class="widget-content">
+        <!-- Nút tắt dấu X nằm ở đây -->
+        <button class="widget-close-btn" onclick="closeWidget()">×</button>
+        
+        <div class="widget-header">
+            <span class="fire-icon">🔥</span>
+            <h4>THÔNG BÁO HOT</h4>
+            <span class="fire-icon">🔥</span>
+        </div>
+        <p class="widget-title">Các Client luôn được cập nhật mỗi tuần!</p>
+        <div class="client-tags">
+            <span class="tag tag-blue">Global</span>
+            <span class="tag tag-green">Roblox VNG</span>
+        </div>
+        <div class="widget-status">
+            <span class="status-dot"></span> Status: <span class="status-text">Đang hoạt động</span>
+        </div>
+    </div>
+</div>
 
-<!-- =================================================== -->
-<!-- PHẦN 2: THẺ STYLE CHỨA MÃ CSS (Tạo hiệu ứng, màu sắc) -->
-<!-- =================================================== -->
+<!-- ĐOẠN CSS (ĐÃ THÊM STYLE CHO NÚT X) -->
 <style>
 .floating-client-widget {
     position: fixed;
@@ -384,6 +404,12 @@
     overflow: hidden;
     transition: all 0.3s ease;
     animation: widgetFloat 3s ease-in-out infinite;
+}
+/* Hiệu ứng ẩn mượt mà khi bấm tắt */
+.floating-client-widget.widget-hidden {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    pointer-events: none;
 }
 .floating-client-widget::before {
     content: '';
@@ -403,6 +429,29 @@
     padding: 12px;
     z-index: 2;
 }
+
+/* NÚT BẤM X ĐẸP MẮT */
+.widget-close-btn {
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    padding: 0 5px;
+    line-height: 1;
+}
+.widget-close-btn:hover {
+    color: #ff0055;
+    text-shadow: 0 0 8px #ff0055;
+    transform: scale(1.2);
+}
+
 .widget-header {
     display: flex;
     align-items: center;
@@ -466,34 +515,27 @@
 }
 .status-text { color: #00ff66; font-weight: 600; }
 
-@keyframes rotateLED {
-    100% { transform: rotate(360deg); }
-}
-@keyframes widgetFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-@keyframes fireBlink {
-    0% { transform: scale(1) rotate(-5deg); filter: drop-shadow(0 0 2px #ff5500); }
-    100% { transform: scale(1.15) rotate(5deg); filter: drop-shadow(0 0 8px #ffaa00); }
-}
-@keyframes radarBlink {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
-}
+@keyframes rotateLED { 100% { transform: rotate(360deg); } }
+@keyframes widgetFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes fireBlink { 0% { transform: scale(1) rotate(-5deg); filter: drop-shadow(0 0 2px #ff5500); } 100% { transform: scale(1.15) rotate(5deg); filter: drop-shadow(0 0 8px #ffaa00); } }
+@keyframes radarBlink { from { opacity: 0.4; } to { opacity: 1; } }
 @media (max-width: 480px) {
-    .floating-client-widget {
-        width: 220px;
-        bottom: 10px;
-        right: 10px;
-        padding: 8px;
-    }
+    .floating-client-widget { width: 220px; bottom: 10px; right: 10px; padding: 8px; }
     .widget-content { padding: 8px; }
     .widget-title { font-size: 0.8rem; margin-bottom: 6px; }
     .client-tags { display: none; }
 }
 </style>
-<!-- =================================================== -->
+
+<!-- ĐOẠN JAVASCRIPT ĐỂ XỬ LÝ HÀNH ĐỘNG BẤM NÚT X ĐỂ TẮT -->
+<script>
+function closeWidget() {
+    const widget = document.getElementById('clientUpdateWidget');
+    if (widget) {
+        widget.classList.add('widget-hidden');
+    }
+}
+</script>
+    
 </body>
 </html>
