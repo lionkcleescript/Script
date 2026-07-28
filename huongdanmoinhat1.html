@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Script - Lion Kc Lee Hub</title>
+    <!-- Bộ icon chuyên nghiệp -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --bg-main: #0b0c10;
+            --bg-card: #151c24;
+            --accent: #45f3ff;
+            --text-light: #ffffff;
+            --text-muted: #8892b0;
+            --success: #2ed573;
+            --danger: #ff4757;
+        }
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-light); 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            padding: 15px; 
+        }
+        .container { 
+            max-width: 680px; 
+            margin: 10px auto; 
+            background: var(--bg-card); 
+            padding: 20px; 
+            border-radius: 12px; 
+            border: 1px solid #2a3543; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .back-link { 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            color: var(--accent); 
+            text-decoration: none; 
+            font-weight: 500; 
+        }
+        /* Khung chứa video chuẩn 16:9 */
+        .video-container { 
+            position: relative; 
+            width: 100%; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            border: 1px solid #2a3543; 
+            margin-bottom: 20px;
+        }
+        .video-container iframe { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
+        }
+        h1 { 
+            color: var(--text-light); 
+            font-size: 1.5rem; 
+            margin: 0 0 10px 0; 
+            line-height: 1.4;
+        }
+        h1 span { color: var(--accent); }
+        .meta-info { 
+            color: var(--text-muted); 
+            font-size: 0.85rem; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid #2a3543; 
+            padding-bottom: 10px; 
+        }
+
+        /* Khung chứa văn bản mẫu */
+        .situation-box {
+            background: #1a232d;
+            border: 1px dashed var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .situation-box.reply-box {
+            border-color: #ff4757;
+        }
+        .situation-title {
+            color: #ff9f43;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .situation-box.reply-box .situation-title {
+            color: #ff4757;
+        }
+        .text-template {
+            width: 100%;
+            height: 180px;
+            background: #0f141c;
+            color: #d1d5db;
+            border: 1px solid #2a3543;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            resize: none;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .text-template:focus {
+            border-color: var(--accent);
+        }
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--accent);
+            color: #0b0c10;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .btn-copy:hover {
+            opacity: 0.9;
+        }
+
+        /* Hệ thống nút tải Gaming */
+        .download-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-download {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1f4068, #162447);
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(69, 243, 255, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(69, 243, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-download:hover::before {
+            left: 100%;
+        }
+
+        .btn-download:hover {
+            background: var(--accent);
+            color: #0b0c10;
+            box-shadow: 0 0 25px var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Biến thể màu sắc cho các nút */
+        .btn-download.server-2 {
+            border-color: var(--success);
+            box-shadow: 0 0 15px rgba(46, 213, 115, 0.2);
+        }
+        .btn-download.server-2:hover {
+            background: var(--success);
+            box-shadow: 0 0 25px var(--success);
+        }
+
+        .btn-download.server-3 {
+            border-color: #ff9f43;
+            box-shadow: 0 0 15px rgba(255, 159, 67, 0.2);
+        }
+        .btn-download.server-3:hover {
+            background: #ff9f43;
+            box-shadow: 0 0 25px #ff9f43;
+        }
+
+        .btn-download i {
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Nút quay lại -->
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Quay lại Trang Chủ</a>
+    
+    <!-- VIDEO YOUTUBE CỦA SCRIPT -->
+    <div class="video-container">
+        <iframe src="https://youtube.com" allowfullscreen></iframe>
+    </div>
+    
+    <!-- TIÊU ĐỀ -->
+    <h1>[NEW]Top 3 cách chuyển vùng roblox VNG sang roblox quốc tế Global|Chi tiết-Đơn giản-Hiệu quả|Lion Kc Lee <span></span>nhanh gọn,dễ dàng</h1>
+    <div class="meta-info">
+        <i class="fa-solid fa-user"></i> By Lion Kc Lee • <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Safe
+    </div>
+
+
+  
+   <!-- KHU VỰC THÔNG TIN TÌNH HUỐNG 1 -->
+    <div class="situation-box">
+        <p class="situation-title">📌 Tình huống 1: Tài khoản mới dính Gmail, CHƯA gắn CCCD, CHƯA bấm đồng ý điều khoản của VNG:</p>
+        <textarea id="templateText" class="text-template" readonly>Dear Roblox Support Team,
+
+My Roblox account location has been incorrectly set to the Vietnam (VNG) region by the automated system. I have never authorized my account to be permanently linked to VNG, nor have I signed any agreement or provided identity verification for the Vietnam region.
+
+Since I am currently residing outside of Vietnam and using a global network, keeping my account locked in the VNG region unfairly blocks my access to international servers and features. Please assist me in manually updating my account location to the United States to match my current network status.
+
+NAME :(GHI TÊN ROBLOX CỦA BẠN)
+GMAIL : (GHI GMAIL CỦA BẠN)
+
+Thank you!</textarea>
+        <button class="btn-copy" data-target="templateText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+    <!-- KHU VỰC THÔNG TIN REPLY KHI BỊ BOT TỪ CHỐI -->
+    <div class="situation-box reply-box">
+        <p class="situation-title">⚠️ REPLY TÌNH HUỐNG 1 NẾU BỊ BOT TỪ CHỐI (Bấm Trả lời trực tiếp trong Gmail):</p>
+        <textarea id="replyText" class="text-template" readonly>Dear Roblox Support,
+
+Thank you for your automated response, but I respectfully request a human agent to review my case. The automated system has mistakenly locked my account to the VNG (Vietnam) region based solely on a temporary network IP detection.
+
+I want to clarify that I have NEVER agreed to any VNG terms, nor have I provided any national identification details to their database. I am a global user, and my account should remain under the Global/U.S. jurisdiction.
+
+Forcing an international account into a restricted local region without the user's explicit consent is an error. Please escalate this ticket to a human manager so they can manually restore my account location to the Global server.
+
+Thank you for your understanding.
+
+Best regards,
+
+[Điền Tên Tài Khoản Roblox và gmail Của Bạn]</textarea>
+        <button class="btn-copy" data-target="replyText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+<!-- KHU VỰC THÔNG TIN TÌNH HUỐNG 2 -->
+    <div class="situation-box">
+        <p class="situation-title">📌 Tình huống 2: Tài khoản mới dính Gmail, CHƯA gắn CCCD, Lỡ Đã bấm đồng ý điều khoản của VNG:</p>
+        <textarea id="templateText" class="text-template" readonly>Dear Roblox Support Team,
+
+          I am writing to request a manual region reset for my account back to the Global (United States) region.
+          
+          Previously, I mistakenly clicked to accept the VNG migration terms due to a misunderstanding of the prompt. However, I did not complete any identity verification (ID/CCCD) for the Vietnam region, and I am currently residing outside of Vietnam, using a global network.
+
+Being locked in the VNG region unfairly blocks my access to international servers, global experiences, and features. Please assist me in manually updating my account location to the United States to match my current network status and correct this mistake.
+
+Name : (Tên Game Roblox)
+Gmail : (tên gmail roblox)
+
+          Thank you for your understanding and support</textarea>
+        <button class="btn-copy" data-target="templateText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+  <!-- KHU VỰC THÔNG TIN REPLY KHI BỊ BOT TỪ CHỐI -->
+    <div class="situation-box reply-box">
+        <p class="situation-title">⚠️ REPLY TÌNH HUỐNG 2 NẾU BỊ BOT TỪ CHỐI (Bấm Trả lời trực tiếp trong Gmail):</p>
+        <textarea id="replyText" class="text-template" readonly>Dear Roblox Support Team,
+
+
+Thank you for your automated response. I am replying to officially request a manual review and a region reset for my account back to the Global (United States) region.
+
+
+Previously, I mistakenly clicked to accept the VNG migration terms due to a misunderstanding of the prompt. However, I did not complete any identity verification (ID/CCCD) for the Vietnam region, and I am currently residing outside of Vietnam, using a global network.
+
+
+Being permanently locked in the VNG region unfairly blocks my access to international servers, global experiences, and features. Please escalate this ticket to a human support agent to manually update my account location to the United States to match my current network status.
+
+
+Thank you for your understanding and support.</textarea>
+        <button class="btn-copy" data-target="replyText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+          <!-- KHU VỰC THÔNG TIN TÌNH HUỐNG 3 -->
+    <div class="situation-box">
+        <p class="situation-title">📌 Tình huống 3: Tài khoản đã gắn CCCD nhưng CHƯA bấm chấp thuận điều khoản VNG:</p>
+        <textarea id="templateText" class="text-template" readonly>Dear Roblox Support Team,
+
+
+I am writing regarding my account location, which is currently pending a regional transfer to Vietnam (VNG). While my identification details were previously uploaded, I have strictly NOT accepted or signed the terms and conditions to transfer my global account over to the VNG platform.
+
+
+As I am permanently relocating abroad and require full access to the global Roblox version, I wish to cancel any ongoing regional migration. Please maintain my account under the global server jurisdiction and update my permanent location to the United States. I do not consent to my profile being managed by VNG.
+
+
+Name : (Tên Game Roblox)
+
+Gmail : (tên gmail roblox)
+
+
+Thank you for your support!</textarea>
+        <button class="btn-copy" data-target="templateText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+  <!-- KHU VỰC THÔNG TIN REPLY KHI BỊ BOT TỪ CHỐI -->
+    <div class="situation-box reply-box">
+        <p class="situation-title">⚠️ REPLY TÌNH HUỐNG 3 NẾU BỊ BOT TỪ CHỐI (Bấm Trả lời trực tiếp trong Gmail):</p>
+        <textarea id="replyText" class="text-template" readonly>Dear Roblox Support,
+
+
+
+          
+Thank you for your automated response, but I request a human agent to review this unique case.
+
+
+My account is currently blocked from global features because the system thinks I am transferring to the VNG platform. However, I want to formally state that I have NOT signed or accepted the terms of migration to the VNG region. I am permanently relocating abroad and completely refuse to have my global profile managed by a local Vietnamese distributor.
+
+
+Since I have not authorized the final transfer, keeping my account in this locked state is unfair. Please have a real agent review this ticket, cancel the pending migration, and ensure my account location is securely updated to the United States.
+
+
+Thank you for your support.
+
+
+Best regards,
+
+[Điền Tên Tài Khoản Roblox Của Bạn]</textarea>
+        <button class="btn-copy" data-target="replyText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+  <!-- KHU VỰC THÔNG TIN TÌNH HUỐNG 4 -->
+    <div class="situation-box">
+        <p class="situation-title">📌 Tình huống 4: Tài khoản ĐÃ gắn CCCD + ĐÃ bấm đồng ý chuyển vùng VNG (PHỔ BIẾN NHẤT):</p>
+        <textarea id="templateText" class="text-template" readonly>Dear Roblox Support Team,
+
+
+I am writing to request a manual regional override to unlink my account from the VNG (Vietnam) jurisdiction and update it to the United States.
+
+
+I have permanently relocated to the U.S. for long-term studying and residency. Currently, my account is severely restricted by VNG local filters, blocking me from international servers, global events, and social features. Additionally, keeping my sensitive ID data in the VNG database raises privacy concerns now that I live abroad.
+
+
+Since my physical location and network IP are now permanently in the U.S., please migrate my account to the global/U.S. region. I am ready to provide proof of my new residency and IP address if required.
+
+
+Account Username: [Điền Tên Tài Khoản Roblox]
+Gmail : (điền gmail của bạn)
+
+Thank you,</textarea>
+        <button class="btn-copy" data-target="templateText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+  <!-- KHU VỰC THÔNG TIN REPLY KHI BỊ BOT TỪ CHỐI -->
+    <div class="situation-box reply-box">
+        <p class="situation-title">⚠️ REPLY TÌNH HUỐNG 4 NẾU BỊ BOT TỪ CHỐI (Bấm Trả lời trực tiếp trong Gmail):</p>
+        <textarea id="replyText" class="text-template" readonly>Dear Roblox Support,
+
+
+Thank you for your automated response, but I respectfully request a human agent to review my case as my situation is a critical matter of permanent international relocation and data privacy.
+
+
+I understand that my account was previously linked to the VNG platform under Vietnamese regulations. However, the automated system fails to recognize that I have permanently left Vietnam for long-term residency and studies abroad. I no longer live under Vietnamese jurisdiction, and my network IP is permanently international.
+
+
+Forcing my account to remain locked in the VNG region violates my rights as a global user and raises significant concerns regarding the handling of my personal identification data (ID/CCCD) on a localized database that I no longer have a legal connection to.
+
+
+Please escalate this ticket to a human manager. I request a manual override to completely untie my profile from the VNG server and transfer my account location back to the Global/U.S. region.
+
+
+I look forward to a real agent reviewing this unique case. Thank you.
+
+
+Best regards,
+
+[Điền Tên Tài Khoản Roblox và Gmail Của Bạn]</textarea>
+        <button class="btn-copy" data-target="replyText"><i class="fa-solid fa-copy"></i> Sao chép nhanh</button>
+    </div>
+
+      
+    <!-- 4 NÚT TẢI MEDIAFIRE GAMING SIÊU ĐẸP -->
+    <div class="download-section">
+        <a href="https://mediafire.com" target="_blank" class="btn-download">
+            <i class="fa-solid fa-cloud-arrow-down"></i> TẢI ROBLOX QUỐC TẾ
+        </a>
+        <a href="https://mediafire.com" target="_blank" class="btn-download server-2">
+            <i class="fa-solid fa-download"></i> TẢI VPN (PREMIUM)
+        </a>
+        <a href="https://mediafire.com" target="_blank" class="btn-download server-3">
+            <i class="fa-solid fa-bolt"></i> (TẢI APP TREO 24H)
+        </a>
+        <a href="https://mediafire.com" target="_blank" class="btn-download server-3">
+            <i class="fa-solid fa-bolt"></i> (ROBLOX VNG)
+        </a>
+    </div>
+</div<!-- ĐOẠN SCRIPT XỬ LÝ SAO CHÉP LIÊN TRÌNH DUYỆT -->
+<script>
+document.querySelectorAll('.btn-copy').forEach(function(button) {
+    button.addEventListener('click', function() {
+        var targetId = this.getAttribute('data-target');
+        var copyText = document.getElementById(targetId);
+        var self = this;
+        
+        // Bước 1: Chọn văn bản trong ô text được chỉ định
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* Dành cho di động */
+
+        // Bước 2: Thử cách sao chép hiện đại
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(copyText.value)
+                .then(function() {
+                    showSuccessNotification(self);
+                })
+                .catch(function() {
+                    fallbackCopy(copyText, self);
+                });
+        } else {
+            fallbackCopy(copyText, self);
+        }
+    });
+});
+
+// Hàm dự phòng chạy lệnh hệ thống cũ (Bao mượt trên mọi WebView ứng dụng)
+function fallbackCopy(element, button) {
+    try {
+        var successful = document.execCommand('copy');
+        if (successful) {
+            showSuccessNotification(button);
+        } else {
+            alert("Trình duyệt chặn tự động. Bạn vui lòng ấn đè vào ô chữ để tự chọn sao chép nhé!");
+        }
+    } catch (err) {
+        alert("Không thể sao chép tự động. Hãy ấn giữ văn bản để tự copy!");
+    }
+}
+
+// Hiển thị hiệu ứng đổi màu riêng cho từng nút khi thành công
+function showSuccessNotification(button) {
+    var originalHTML = button.innerHTML;
+    button.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép!';
+    button.style.background = '#2ed573';
+    button.style.color = '#ffffff';
+    setTimeout(function(){
+        button.innerHTML = originalHTML;
+        button.style.background = '#45f3ff';
+        button.style.color = '#0b0c10';
+    }, 2000);
+}
+</script>
+
+</body>
+  </html>
+  
