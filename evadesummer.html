@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lion Hub - Secure Verification</title>
+    <title>Lion Hub - Evade Summer Verification</title>
     <style>
         body {
             font-family: sans-serif;
@@ -37,7 +37,8 @@
             box-shadow: 0 4px 10px rgba(255, 71, 71, 0.3);
         }
     </style>
-    <!-- Tải API Cloudflare Turnstile chính thức -->
+    
+    <!-- Tải thư viện Cloudflare Turnstile với cấu hình kích hoạt thủ công (onload) -->
     <script src="https://cloudflare.com" async defer></script>
 </head>
 <body>
@@ -46,17 +47,15 @@
         <h2>XÁC MINH HỆ THỐNG</h2>
         <p>Vui lòng hoàn thành lớp bảo mật bên dưới để lấy liên kết.</p>
         
-        <!-- Vùng hiển thị ô tích CAPTCHA của Cloudflare (Đã đặt ID đồng bộ dữ liệu) -->
-        <div id="captcha-container-box" style="display: flex; justify-content: center; margin: 20px 0; min-height: 65px;">
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAED6uwxazSVD7W7K" data-callback="verifyHuman" data-theme="dark"></div>
-        </div>
+        <!-- Ô trống chứa CAPTCHA được định danh ID rõ ràng -->
+        <div id="my-captcha-zone" style="display: flex; justify-content: center; margin: 20px 0; min-height: 65px;"></div>
 
-        <!-- Trạng thái chờ đếm số hệ thống (Mặc định ẩn) -->
+        <!-- Trạng thái chờ hệ thống (Mặc định ẩn) -->
         <div id="loading-box" style="display: none; color: #ffcc00; font-weight: bold; margin: 15px 0;">
             Đang quét môi trường trình duyệt an toàn... <span id="timer">5</span> giây.
         </div>
 
-        <!-- Vùng trả link thật cho người dùng (Mặc định ẩn ngầm hoàn toàn với Bot YouTube) -->
+        <!-- Vùng trả link thật cho người dùng (Ẩn hoàn toàn với Bot YouTube) -->
         <div id="secured-content" style="display: none;">
             <p style="color: #2ecc71; font-weight: bold;">✓ Xác minh thành công!</p>
             <button onclick="redirectSecured()" class="btn-get">BẤM VÀO ĐÂY ĐỂ LẤY SCRIPT</button>
@@ -64,10 +63,21 @@
     </div>
 
     <script>
-        // Kích hoạt khi Turnstile xác nhận là người dùng sạch vượt qua rào cản thành công
+        // Hàm này tự động chạy ngay khi trình duyệt tải xong file JavaScript của Cloudflare
+        window.onloadTurnstileCallback = function () {
+            // Ép buộc hệ thống phải vẽ ô CAPTCHA vào vùng ID 'my-captcha-zone'
+            turnstile.render('#my-captcha-zone', {
+                sitekey: '0x4AAAAAAED6uwxazSVD7W7K',
+                theme: 'dark',
+                callback: function(token) {
+                    verifyHuman(token);
+                }
+            });
+        };
+
+        // Hàm xử lý đếm ngược sau khi xác minh thành công
         function verifyHuman(token) {
-            // Đã đồng bộ sửa đúng ID vùng chứa CAPTCHA để tránh lỗi kẹt lệnh
-            document.getElementById('captcha-container-box').style.display = 'none';
+            document.getElementById('my-captcha-zone').style.display = 'none';
             document.getElementById('loading-box').style.display = 'block';
             
             let seconds = 5; 
@@ -82,11 +92,10 @@
             }, 1000);
         }
 
-        // Thực thi mở khóa chuỗi Base64 và điều hướng trang khi có click chuột thật
+        // Chuyển hướng trình duyệt đến link đã mã hóa Base64
         function redirectSecured() {
-            // Thay chuỗi ký tự Base64 chứa link rút gọn kiếm tiền Evade của bạn vào đây
+            // Hiện tại đang trỏ về trang chủ lionkclee.site của bạn
             const safeBase64Data = "aHR0cHM6Ly9saW9ua2NsZWUuc2l0ZQ==";
-            
             window.location.href = atob(safeBase64Data);
         }
     </script>
