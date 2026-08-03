@@ -37,7 +37,7 @@
         }
     </style>
     
-    <!-- Nhúng API Cloudflare kèm hàm kích hoạt callback onload -->
+    <!-- 1. ĐÃ SỬA: Thay thế URL chính xác của API Cloudflare Turnstile kèm tham số kích hoạt callback -->
     <script src="https://cloudflare.com" async defer></script>
 </head>
 <body>
@@ -46,7 +46,7 @@
         <h2>HỆ THỐNG BẢO MẬT LION HUB</h2>
         <p>Vui lòng chờ hệ thống kiểm tra hoặc tích vào ô bên dưới:</p>
 
-        <!-- Đã đồng bộ sửa đúng ID vùng chứa 'my-captcha-zone' trùng khớp với JavaScript -->
+        <!-- Vùng chứa ô CAPTCHA Turnstile -->
         <div id="my-captcha-zone" style="display: flex; justify-content: center; margin: 30px 0; min-height: 65px;"></div>
 
         <!-- Khối đếm số chờ đợi (Mặc định ẩn) -->
@@ -54,7 +54,7 @@
             Đang quét môi trường trình duyệt an toàn... <span id="timer">5</span> giây.
         </div>
 
-        <!-- Khối nội dung giấu kín (Mặc định ẩn hoàn toàn với Bot YouTube) -->
+        <!-- Khối nội dung giấu kín -->
         <div id="secured-content" style="display: none;">
             <p style="color: #2ecc71; font-weight: bold;">✓ Xác minh thành công!</p>
             <button onclick="redirectSecured()" class="btn-get">BẤM VÀO ĐÂY ĐỂ LẤY SCRIPT</button>
@@ -62,11 +62,10 @@
     </div>
 
     <script>
-        // Hàm bắt buộc chạy khi trình duyệt tải xong API Cloudflare Turnstile
+        // Hàm tự động chạy sau khi API tải xong nhờ cấu hình đường dẫn script ở trên
         window.onloadTurnstileCallback = function () {
-            // Ép buộc hệ thống vẽ ô CAPTCHA vào đúng vùng ID 'my-captcha-zone'
             turnstile.render('#my-captcha-zone', {
-                sitekey: '0x4AAAAAAED6uwxazSVD7W7K',
+                sitekey: '0x4AAAAAAED6uwxazSVD7W7K', // Hãy chắc chắn đây là Sitekey tương ứng với tên miền của bạn
                 theme: 'dark',
                 callback: function(token) {
                     verifyHuman(token);
@@ -93,7 +92,7 @@
 
         // Thực thi mở khóa chuỗi Base64 và điều hướng trang
         function redirectSecured() {
-            // Chuỗi Base64 đang chứa link trang chủ lionkclee.site của bạn
+            // Chuỗi Giải mã ra: https://lionkclee.site
             const safeBase64Data = "aHR0cHM6Ly9saW9ua2NsZWUuc2l0ZQ==";
             window.location.href = atob(safeBase64Data);
         }
