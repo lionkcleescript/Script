@@ -6,7 +6,7 @@
     <title>Lion Hub - Secure Verification</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: sans-serif;
             background-color: #121212;
             color: #ffffff;
             text-align: center;
@@ -25,7 +25,7 @@
         .btn-get {
             display: inline-block;
             padding: 12px 30px;
-            background: #ff4747;
+            background: red;
             color: white;
             border: none;
             font-weight: bold;
@@ -37,7 +37,7 @@
             box-shadow: 0 4px 10px rgba(255, 71, 71, 0.3);
         }
     </style>
-    <!-- Tải API Cloudflare Turnstile -->
+    <!-- Tải API Cloudflare Turnstile chính thức -->
     <script src="https://cloudflare.com" async defer></script>
 </head>
 <body>
@@ -46,8 +46,8 @@
         <h2>XÁC MINH HỆ THỐNG</h2>
         <p>Vui lòng hoàn thành lớp bảo mật bên dưới để lấy liên kết.</p>
         
-        <!-- Khu vực chứa ô tích CAPTCHA của Cloudflare -->
-        <div id="captcha-box" style="display: flex; justify-content: center; margin: 20px 0; min-height: 65px;">
+        <!-- Vùng hiển thị ô tích CAPTCHA của Cloudflare (Đã đặt ID đồng bộ dữ liệu) -->
+        <div id="captcha-container-box" style="display: flex; justify-content: center; margin: 20px 0; min-height: 65px;">
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAED6uwxazSVD7W7K" data-callback="verifyHuman" data-theme="dark"></div>
         </div>
 
@@ -66,7 +66,8 @@
     <script>
         // Kích hoạt khi Turnstile xác nhận là người dùng sạch vượt qua rào cản thành công
         function verifyHuman(token) {
-            document.getElementById('captcha-box').style.display = 'none';
+            // Đã đồng bộ sửa đúng ID vùng chứa CAPTCHA để tránh lỗi kẹt lệnh
+            document.getElementById('captcha-container-box').style.display = 'none';
             document.getElementById('loading-box').style.display = 'block';
             
             let seconds = 5; 
@@ -81,7 +82,7 @@
             }, 1000);
         }
 
-        // Thực thi mở khóa chuỗi Base6ca và điều hướng trang
+        // Thực thi mở khóa chuỗi Base64 và điều hướng trang khi có click chuột thật
         function redirectSecured() {
             // Thay chuỗi ký tự Base64 chứa link rút gọn kiếm tiền Evade của bạn vào đây
             const safeBase64Data = "aHR0cHM6Ly9saW9ua2NsZWUuc2l0ZQ==";
