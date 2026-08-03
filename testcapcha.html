@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lion Hub - Secure Test</title>
+    <title>Lion Hub - Secure Verification</title>
     <style>
         body {
             background-color: #121212;
@@ -22,9 +22,22 @@
             border: 1px solid #333;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
+        .btn-get {
+            display: inline-block;
+            padding: 12px 30px;
+            background: red;
+            color: white;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
     </style>
     
-    <!-- Sửa cốt lõi: Nhúng thư viện API kèm theo hàm kích hoạt callback onload -->
+    <!-- Nhúng API Cloudflare kèm hàm kích hoạt callback onload -->
     <script src="https://cloudflare.com" async defer></script>
 </head>
 <body>
@@ -33,29 +46,59 @@
         <h2>HỆ THỐNG BẢO MẬT LION HUB</h2>
         <p>Vui lòng chờ hệ thống kiểm tra hoặc tích vào ô bên dưới:</p>
 
-        <!-- Ô trống định danh rõ ràng để ép Cloudflare vẽ giao diện vào đây -->
-        <div id="captcha-container" style="display: flex; justify-content: center; margin: 30px 0; min-height: 65px;"></div>
+        <!-- Đã đồng bộ sửa đúng ID vùng chứa 'my-captcha-zone' trùng khớp với JavaScript -->
+        <div id="my-captcha-zone" style="display: flex; justify-content: center; margin: 30px 0; min-height: 65px;"></div>
+
+        <!-- Khối đếm số chờ đợi (Mặc định ẩn) -->
+        <div id="loading-box" style="display: none; color: #ffcc00; font-weight: bold; margin: 15px 0;">
+            Đang quét môi trường trình duyệt an toàn... <span id="timer">5</span> giây.
+        </div>
+
+        <!-- Khối nội dung giấu kín (Mặc định ẩn hoàn toàn với Bot YouTube) -->
+        <div id="secured-content" style="display: none;">
+            <p style="color: #2ecc71; font-weight: bold;">✓ Xác minh thành công!</p>
+            <button onclick="redirectSecured()" class="btn-get">BẤM VÀO ĐÂY ĐỂ LẤY SCRIPT</button>
+        </div>
     </div>
 
     <script>
-        // Hàm này bắt buộc phải chạy ngay khi trình duyệt tải xong thư viện Cloudflare
+        // Hàm bắt buộc chạy khi trình duyệt tải xong API Cloudflare Turnstile
         window.onloadTurnstileCallback = function () {
-            // Lệnh ép buộc hệ thống vượt qua rào cản CORS để hiển thị ô CAPTCHA
-            turnstile.render('#captcha-container', {
+            // Ép buộc hệ thống vẽ ô CAPTCHA vào đúng vùng ID 'my-captcha-zone'
+            turnstile.render('#my-captcha-zone', {
                 sitekey: '0x4AAAAAAED6uwxazSVD7W7K',
                 theme: 'dark',
                 callback: function(token) {
-                    passedCaptcha(token);
+                    verifyHuman(token);
                 }
             });
         };
 
-        // Hàm xử lý hành động sau khi người dùng tích chọn thành công
-        function passedCaptcha(token) {
-            alert("Xác minh thành công! Đang điều hướng về trang chủ.");
-            window.location.href = "https://lionkclee.site";
+        // Hàm xử lý đếm ngược thời gian sau khi tích chọn thành công
+        function verifyHuman(token) {
+            document.getElementById('my-captcha-zone').style.display = 'none';
+            document.getElementById('loading-box').style.display = 'block';
+            
+            let seconds = 5; 
+            let interval = setInterval(function() {
+                seconds--;
+                document.getElementById('timer').innerText = seconds;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('loading-box').style.display = 'none';
+                    document.getElementById('secured-content').style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Thực thi mở khóa chuỗi Base64 và điều hướng trang
+        function redirectSecured() {
+            // Chuỗi Base64 đang chứa link trang chủ lionkclee.site của bạn
+            const safeBase64Data = "aHR0cHM6Ly9saW9ua2NsZWUuc2l0ZQ==";
+            window.location.href = atob(safeBase64Data);
         }
     </script>
 
 </body>
-</html>
+    </html>
+    
