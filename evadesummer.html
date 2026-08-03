@@ -3,115 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lion Hub - Get Roblox Script</title>
+    <title>Lion Hub - Secure Verification</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: #121212;
             color: #ffffff;
             text-align: center;
-            padding: 50px 20px;
+            padding-top: 100px;
             margin: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             background: #1e1e1e;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
             border: 1px solid #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        h1 { color: #ff4747; margin-bottom: 10px; }
-        p { color: #bbb; font-size: 15px; }
         .btn-get {
             display: inline-block;
-            padding: 14px 30px;
-            background: linear-gradient(135deg, #ff4747, #b30000);
+            padding: 12px 30px;
+            background: #ff4747;
             color: white;
             border: none;
             font-weight: bold;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 5px;
             text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 71, 71, 0.4);
-        }
-        .btn-get:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 71, 71, 0.6);
-        }
-        #countdown {
-            font-size: 18px;
-            color: #ffcc00;
-            font-weight: bold;
-            margin: 15px 0;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(255, 71, 71, 0.3);
         }
     </style>
-
-    <!-- BƯỚC 1: Nhúng thư viện API chính thức của Cloudflare Turnstile -->
+    <!-- Tải API Cloudflare Turnstile -->
     <script src="https://cloudflare.com" async defer></script>
 </head>
 <body>
 
     <div class="container">
-        <h1>LION SECURITY</h1>
-        <p>Vui lòng hoàn thành lớp bảo mật để xác minh bạn không phải là Bot tự động.</p>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
-
-        <!-- BƯỚC 2: Hộp kiểm tra CAPTCHA (Thay SITE_KEY của bạn vào đây) -->
-        <div id="captcha-box" style="display: flex; justify-content: center; margin: 20px 0;">
-            <!-- LƯU Ý: Thay chuỗi 3_YOUR_SITE_KEY_HERE bằng Site Key lấy từ Cloudflare Dashboard -->
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAED6uwxazSVD7W7K" data-callback="verifyHuman"></div>
+        <h2>XÁC MINH HỆ THỐNG</h2>
+        <p>Vui lòng hoàn thành lớp bảo mật bên dưới để lấy liên kết.</p>
+        
+        <!-- Khu vực chứa ô tích CAPTCHA của Cloudflare -->
+        <div id="captcha-box" style="display: flex; justify-content: center; margin: 20px 0; min-height: 65px;">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAED6uwxazSVD7W7K" data-callback="verifyHuman" data-theme="dark"></div>
         </div>
 
-        <!-- Vùng đếm ngược giây (Mặc định ẩn) -->
-        <div id="loading-box" style="display: none;">
-            <div id="countdown">Đang kiểm tra môi trường trình duyệt... <span id="timer">5</span>s</div>
+        <!-- Trạng thái chờ đếm số hệ thống (Mặc định ẩn) -->
+        <div id="loading-box" style="display: none; color: #ffcc00; font-weight: bold; margin: 15px 0;">
+            Đang quét môi trường trình duyệt an toàn... <span id="timer">5</span> giây.
         </div>
 
-        <!-- BƯỚC 3: Khu vực chứa nội dung nhạy cảm / Link nhận quà (Mặc định ẩn hoàn toàn với Bot) -->
+        <!-- Vùng trả link thật cho người dùng (Mặc định ẩn ngầm hoàn toàn với Bot YouTube) -->
         <div id="secured-content" style="display: none;">
-            <p style="color: #2ecc71; font-weight: bold; font-size: 16px;">✓ Xác minh thành công! Liên kết của bạn đã sẵn sàng.</p>
-            <button onclick="redirectSecured()" class="btn-get">BẤM VÀO ĐÂY ĐỂ LẤY SCRIPT / LINK</button>
+            <p style="color: #2ecc71; font-weight: bold;">✓ Xác minh thành công!</p>
+            <button onclick="redirectSecured()" class="btn-get">BẤM VÀO ĐÂY ĐỂ LẤY SCRIPT</button>
         </div>
     </div>
 
-    <!-- BƯỚC 4: Logic JavaScript xử lý mở khóa và giải mã Base64 -->
     <script>
-        // Hàm chạy khi người dùng vượt qua rào CAPTCHA của Cloudflare thành công
+        // Kích hoạt khi Turnstile xác nhận là người dùng sạch vượt qua rào cản thành công
         function verifyHuman(token) {
-            // Ẩn ô CAPTCHA ngay lập tức để bot không thể kích hoạt lại
             document.getElementById('captcha-box').style.display = 'none';
-            // Hiện đồng hồ đếm ngược hệ thống
             document.getElementById('loading-box').style.display = 'block';
             
-            let seconds = 5; // Bạn có thể chỉnh sửa số giây chờ tại đây (ví dụ: 5 hoặc 10 giây)
+            let seconds = 5; 
             let interval = setInterval(function() {
                 seconds--;
                 document.getElementById('timer').innerText = seconds;
-                
                 if (seconds <= 0) {
                     clearInterval(interval);
-                    // Ẩn đồng hồ và hiển thị nút bấm thật cho người dùng click
                     document.getElementById('loading-box').style.display = 'none';
                     document.getElementById('secured-content').style.display = 'block';
                 }
             }, 1000);
         }
 
-        // Hàm giải mã link gốc và thực hiện chuyển hướng khi có tương tác click thật
+        // Thực thi mở khóa chuỗi Base6ca và điều hướng trang
         function redirectSecured() {
-            // BƯỚC QUAN TRỌNG: Ném link rút gọn kiếm tiền hoặc chuỗi Script của bạn vào đây dưới dạng Base64
-            // Chuỗi ký tự bên dưới tương ứng với link: https://lionkclee.site
+            // Thay chuỗi ký tự Base64 chứa link rút gọn kiếm tiền Evade của bạn vào đây
             const safeBase64Data = "aHR0cHM6Ly9saW9ua2NsZWUuc2l0ZQ==";
             
-            // Hàm atob sẽ thực hiện biên dịch chuỗi ngược lại ngay trong bộ nhớ cache trình duyệt
-            const originalUrl = atob(safeBase64Data);
-            
-            // Điều hướng người dùng đi tiếp
-            window.location.href = originalUrl;
+            window.location.href = atob(safeBase64Data);
         }
     </script>
 
