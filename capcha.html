@@ -3,60 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đang kiểm tra bảo mật...</title>
+    <title>LION HUB - XÁC THỰC HỆ THỐNG</title>
     
-    <!-- 1. Tải thư viện Cloudflare Turnstile chính thức -->
+    <!-- 1. TẢI THƯ VIỆN CLOUDFLARE TURNSTILE -->
     <script src="https://cloudflare.com" async defer></script>
     
+    <!-- Giao diện tối ưu phong cách Gaming/Roblox cho trang của LionKCLee -->
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0b0c;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f9;
-            margin: 0;
         }
         .container {
+            background: linear-gradient(145deg, #141416, #1c1c1e);
+            border: 1px solid #ff4500;
+            padding: 40px 30px;
+            border-radius: 12px;
             text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(255, 69, 0, 0.2);
+            max-width: 450px;
+            width: 90%;
         }
-        h2 { color: #333; font-size: 20px; margin-bottom: 10px; }
-        p { color: #666; font-size: 14px; margin-bottom: 20px; }
+        h1 {
+            color: #ff4500;
+            font-size: 28px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        p {
+            color: #aaaaaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .captcha-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .btn-action {
+            display: none; /* Ẩn nút mặc định để chống bot */
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #ff4500, #ff6a00);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            transition: 0.3s ease;
+        }
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Xác minh bạn là con người</h2>
-    <p>Vui lòng hoàn thành lớp bảo mật bên dưới để tiếp tục đi tới liên kết.</p>
-    
-    <!-- 2. Hộp kiểm tra Cloudflare Turnstile với Site Key của bạn -->
-    <!-- Sử dụng thuộc tính data-callback để kích hoạt hàm tự động chuyển hướng khi thành công -->
-    <div class="cf-turnstile" 
-         data-sitekey="0x4AAAAAAED6uwxazSVD7W7K" 
-         data-callback="onTurnstileSuccess">
+    <div class="container">
+        <h1>LION HUB SECURITY</h1>
+        <p>Vui lòng vượt qua kiểm tra bảo mật để mở khóa liên kết lấy Script/Client.</p>
+        
+        <!-- 2. Ô HIỂN THỊ CAPTCHA SỬ DỤNG SITE KEY CỦA BẠN -->
+        <div class="captcha-box">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAED6uwxazSVD7W7K" data-callback="onCaptchaSuccess"></div>
+        </div>
+        
+        <!-- 3. NÚT NHẬN SCRIPT (Hãy thay đường dẫn sau thuộc tính href="..." bằng link thật của bạn) -->
+        <a id="unlock-btn" href="ĐIỀN_LINK_RÚT_GỌN_HOẶC_LINK_SCRIPT_TẠI_ĐÂY" class="btn-action">
+            🚀 Bấm Vào Đây Để Lấy Script
+        </a>
     </div>
-</div>
 
-<script>
-    // 3. Cấu hình Đường link đích cuối cùng bạn muốn chuyển hướng tới
-    const TARGET_URL = "https://lionkclee.site";
-
-    // Hàm tự động chạy khi người dùng vượt qua captcha thành công
-    function onTurnstileSuccess(token) {
-        if (token) {
-            // Chờ 0.5 giây tạo hiệu ứng mượt mà rồi chuyển hướng
-            setTimeout(() => {
-                window.location.href = TARGET_URL;
-            }, 500);
+    <!-- 4. LOGIC JAVASCRIPT XỬ LÝ MỞ KHÓA TRÊN GITHUB PAGES -->
+    <script>
+        function onCaptchaSuccess(token) {
+            if (token) {
+                // Sau khi người dùng tích chọn thành công, nút lấy link sẽ hiện ra mượt mà
+                var btn = document.getElementById("unlock-btn");
+                btn.style.display = "block";
+            }
         }
-    }
-</script>
+    </script>
 
 </body>
-</html>
+    </html>
+    
