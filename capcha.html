@@ -1,8 +1,99 @@
-<!-- Cấu trúc mới thiết lập khung cố định tránh bị trình duyệt ẩn -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LION HUB - XÁC THỰC HỆ THỐNG</title>
+    
+    <!-- 1. TẢI THƯ VIỆN CLOUDFLARE TURNSTILE -->
+    <script src="https://cloudflare.com" async defer></script>
+    
+    <!-- Giao diện tối ưu phong cách Gaming/Roblox cho trang của LionKCLee -->
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0b0c;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: linear-gradient(145deg, #141416, #1c1c1e);
+            border: 1px solid #ff4500;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(255, 69, 0, 0.2);
+            max-width: 450px;
+            width: 90%;
+        }
+        h1 {
+            color: #ff4500;
+            font-size: 28px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        p {
+            color: #aaaaaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .captcha-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .btn-action {
+            display: none; /* Ẩn nút mặc định để chống bot */
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #ff4500, #ff6a00);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            transition: 0.3s ease;
+        }
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cấu trúc mới thiết lập khung cố định tránh bị trình duyệt ẩn -->
 <div class="captcha-box" style="min-height: 80px; display: flex; justify-content: center; align-items: center;">
     <div class="cf-turnstile" 
          data-sitekey="0x4AAAAAAAED6uwxazSVD7W7K" 
          data-callback="onCaptchaSuccess" 
          data-theme="dark">
     </div>
-</div>
+</div>       
+        <!-- 3. NÚT NHẬN SCRIPT (Hãy thay đường dẫn sau thuộc tính href="..." bằng link thật của bạn) -->
+        <a id="unlock-btn" href="ĐIỀN_LINK_RÚT_GỌN_HOẶC_LINK_SCRIPT_TẠI_ĐÂY" class="btn-action">
+            🚀 Bấm Vào Đây Để Lấy Script
+        </a>
+    </div>
+
+    <!-- 4. LOGIC JAVASCRIPT XỬ LÝ MỞ KHÓA TRÊN GITHUB PAGES -->
+    <script>
+        function onCaptchaSuccess(token) {
+            if (token) {
+                // Sau khi người dùng tích chọn thành công, nút lấy link sẽ hiện ra mượt mà
+                var btn = document.getElementById("unlock-btn");
+                btn.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+    </html>
+    
