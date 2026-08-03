@@ -4,27 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lion Hub - Secure Test</title>
-    <!-- Nhúng thư viện API chính thức của Cloudflare -->
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            padding-top: 100px;
+            font-family: sans-serif;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+    </style>
+    
+    <!-- Sửa cốt lõi: Nhúng thư viện API kèm theo hàm kích hoạt callback onload -->
     <script src="https://cloudflare.com" async defer></script>
 </head>
-<body style="background-color: #121212; color: #ffffff; text-align: center; padding-top: 100px; font-family: sans-serif;">
+<body>
 
-    <h2>HỆ THỐNG BẢO MẬT LION HUB</h2>
-    <p>Vui lòng chờ hệ thống kiểm tra hoặc tích vào ô bên dưới:</p>
+    <div class="container">
+        <h2>HỆ THỐNG BẢO MẬT LION HUB</h2>
+        <p>Vui lòng chờ hệ thống kiểm tra hoặc tích vào ô bên dưới:</p>
 
-    <!-- Khối hiển thị ô tích CAPTCHA sử dụng đúng mã Site Key của bạn -->
-    <div style="display: flex; justify-content: center; margin: 30px 0;">
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAED6uwxazSVD7W7K" data-callback="passedCaptcha" data-theme="dark"></div>
+        <!-- Ô trống định danh rõ ràng để ép Cloudflare vẽ giao diện vào đây -->
+        <div id="captcha-container" style="display: flex; justify-content: center; margin: 30px 0; min-height: 65px;"></div>
     </div>
 
     <script>
-        // Hàm tự động kích hoạt ngay khi bạn vượt qua CAPTCHA thành công
+        // Hàm này bắt buộc phải chạy ngay khi trình duyệt tải xong thư viện Cloudflare
+        window.onloadTurnstileCallback = function () {
+            // Lệnh ép buộc hệ thống vượt qua rào cản CORS để hiển thị ô CAPTCHA
+            turnstile.render('#captcha-container', {
+                sitekey: '0x4AAAAAAED6uwxazSVD7W7K',
+                theme: 'dark',
+                callback: function(token) {
+                    passedCaptcha(token);
+                }
+            });
+        };
+
+        // Hàm xử lý hành động sau khi người dùng tích chọn thành công
         function passedCaptcha(token) {
-            alert("Xác minh thành công! Đang chuyển hướng về trang chủ.");
+            alert("Xác minh thành công! Đang điều hướng về trang chủ.");
             window.location.href = "https://lionkclee.site";
         }
     </script>
 
 </body>
-                                   </html>
-  
+</html>
