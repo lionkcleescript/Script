@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion Hub - Secure Test</title>
+    <!-- Nhúng thư viện API chính thức của Cloudflare -->
+    <script src="https://cloudflare.com" async defer></script>
+</head>
+<body style="background-color: #121212; color: #ffffff; text-align: center; padding-top: 100px; font-family: sans-serif;">
+
+    <h2>HỆ THỐNG BẢO MẬT LION HUB</h2>
+    <p>Vui lòng chờ hệ thống kiểm tra hoặc tích vào ô bên dưới:</p>
+
+    <!-- Khối hiển thị ô tích CAPTCHA sử dụng đúng mã Site Key của bạn -->
+    <div style="display: flex; justify-content: center; margin: 30px 0;">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAED6uwxazSVD7W7K" data-callback="passedCaptcha" data-theme="dark"></div>
+    </div>
+
+    <script>
+        // Hàm tự động kích hoạt ngay khi bạn vượt qua CAPTCHA thành công
+        function passedCaptcha(token) {
+            alert("Xác minh thành công! Đang chuyển hướng về trang chủ.");
+            window.location.href = "https://lionkclee.site";
+        }
+    </script>
+
+</body>
+                                   </html>
+  
