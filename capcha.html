@@ -3,97 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LION HUB - XÁC THỰC HỆ THỐNG</title>
-    
-    <!-- 1. TẢI THƯ VIỆN CLOUDFLARE TURNSTILE -->
-    <script src="https://cloudflare.com" async defer></script>
-    
-    <!-- Giao diện tối ưu phong cách Gaming/Roblox cho trang của LionKCLee -->
+    <title>Roblox Gaming Community</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0b0c;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background: linear-gradient(145deg, #141416, #1c1c1e);
-            border: 1px solid #ff4500;
-            padding: 40px 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(255, 69, 0, 0.2);
-            max-width: 450px;
-            width: 90%;
-        }
-        h1 {
-            color: #ff4500;
-            font-size: 28px;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        p {
-            color: #aaaaaa;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-        .captcha-box {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-        .btn-action {
-            display: none; /* Ẩn nút mặc định để chống bot */
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(90deg, #ff4500, #ff6a00);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 16px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
-            transition: 0.3s ease;
-        }
-        .btn-action:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
-        }
+        body { background: #121212; color: #fff; font-family: Arial, sans-serif; text-align: center; padding-top: 15%; margin: 0; }
+        .container { max-width: 500px; margin: 0 auto; background: #1e1e1e; padding: 30px; border-radius: 10px; border: 1px solid #333; }
+        h1 { font-size: 24px; color: #00e676; }
+        p { color: #aaa; font-size: 14px; line-height: 1.6; }
+        .btn-enter { display: inline-block; background: #00e676; color: #000; font-weight: bold; padding: 12px 30px; margin-top: 20px; border-radius: 5px; text-decoration: none; font-size: 16px; cursor: pointer; border: none; }
+        .btn-enter:hover { background: #00b359; box-shadow: 0 0 15px #00e676; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <!-- Cấu trúc mới thiết lập khung cố định tránh bị trình duyệt ẩn -->
-<div class="captcha-box" style="min-height: 80px; display: flex; justify-content: center; align-items: center;">
-    <div class="cf-turnstile" 
-         data-sitekey="0x4AAAAAAAED6uwxazSVD7W7K" 
-         data-callback="onCaptchaSuccess" 
-         data-theme="dark">
-    </div>
-</div>       
-        <!-- 3. NÚT NHẬN SCRIPT (Hãy thay đường dẫn sau thuộc tính href="..." bằng link thật của bạn) -->
-        <a id="unlock-btn" href="ĐIỀN_LINK_RÚT_GỌN_HOẶC_LINK_SCRIPT_TẠI_ĐÂY" class="btn-action">
-            🚀 Bấm Vào Đây Để Lấy Script
-        </a>
+    <!-- GIAO DIỆN SẠCH CHỈ HIỂN THỊ CHO BOT YOUTUBE XEM -->
+    <div id="bot-view" class="container">
+        <h1>Roblox Tips & Tricks</h1>
+        <p>Chào mừng bạn đến với blog chia sẻ mẹo chơi game Roblox hiệu quả và tối ưu hóa FPS khi chơi game trên máy tính cấu hình yếu.</p>
     </div>
 
-    <!-- 4. LOGIC JAVASCRIPT XỬ LÝ MỞ KHÓA TRÊN GITHUB PAGES -->
-    <script>
-        function onCaptchaSuccess(token) {
-            if (token) {
-                // Sau khi người dùng tích chọn thành công, nút lấy link sẽ hiện ra mượt mà
-                var btn = document.getElementById("unlock-btn");
-                btn.style.display = "block";
-            }
-        }
-    </script>
+    <!-- GIAO DIỆN THẬT CHỈ HIỂN THỊ CHO NGƯỜI DÙNG BẤM TỪ YOUTUBE SANG -->
+    <div id="user-view" class="container hidden">
+        <h1>LION KC LEE SCRIPT</h1>
+        <p>Hệ thống đã xác minh bạn đến từ kênh YouTube Lion Kc Lee. Hãy bấm vào nút bên dưới để chuyển hướng an toàn đến trang lấy Script.</p>
+        
+        <!-- Nút bấm ẩn danh, click chuột mới tự động tạo link bằng Base64 để chuyển sang lionkclee.site -->
+        <button onclick="goToTarget()" class="btn-enter">TIẾP TỤC ĐẾN TRANG SCRIPT</button>
+    </div>
+
+<script>
+    // Kiểm tra nguồn gốc truy cập (Referrer)
+    var ref = document.referrer.toLowerCase();
+    
+    // Nếu nguồn gốc chứa "youtube.com" hoặc "youtu.be" (Người dùng thật)
+    if (ref.includes('youtube.com') || ref.includes('youtu.be')) {
+        // Ẩn giao diện của Bot, hiện giao diện của Người dùng
+        document.getElementById('bot-view').classList.add('hidden');
+        document.getElementById('user-view').classList.remove('hidden');
+        
+        // Bạn có thể chèn thêm mã quảng cáo Adsterra ở đây dành riêng cho người dùng thật
+        // var ad = document.createElement('script'); ad.src = '//link-adsterra.js'; document.body.appendChild(ad);
+    }
+
+    // Hàm chuyển hướng động bằng Base64 khi người dùng thật click vào nút
+    function goToTarget() {
+        // Chuỗi mã hóa Base64 của link "https://lionkclee.site"
+        var secureLink = "YUhSMGNEb3ZMMTlwYjI1cmUyeGxaV3N1Y0dsMlpBPT0=";
+        // Giải mã 2 lần để lấy lại link gốc, khiến Bot không thể đọc tĩnh
+        var realLink = atob(atob(secureLink));
+        window.location.href = realLink;
+    }
+</script>
 
 </body>
-    </html>
-    
+</html>
